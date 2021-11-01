@@ -6,6 +6,8 @@
  */
 
 #include "pacmod_game_control/controllers.h"
+#include <iostream>
+using namespace std;
 
 #include <pacmod3_msgs/SystemCmdInt.h>
 
@@ -183,6 +185,44 @@ float LogitechG29Controller::brake_value()
 {
   // The pedals report -1.0 when untouched, and change positively to 1.0 when full pressed
   return (input_msg_.axes[axes_[JoyAxis::LEFT_TRIGGER_AXIS]] + 1.0) / 2.0;
+}
+
+
+// --- Logitech G920, racing wheel with pedals
+LogitechG920Controller::LogitechG920Controller()
+{
+  // steering wheel, not right stick
+  axes_[JoyAxis::RIGHT_STICK_LR] = 0;
+  // throttle pedal, not right trigger
+  axes_[JoyAxis::RIGHT_TRIGGER_AXIS] = 1;
+  // brake pedal, not left trigger
+  axes_[JoyAxis::LEFT_TRIGGER_AXIS] = 2;
+  axes_[JoyAxis::DPAD_LR] = 4;
+  axes_[JoyAxis::DPAD_UD] = 5;
+
+  btns_[JoyButton::BOTTOM_BTN] = 0;
+  btns_[JoyButton::RIGHT_BTN] = 2;
+  btns_[JoyButton::LEFT_BTN] = 1;
+  btns_[JoyButton::TOP_BTN] = 3;
+
+  // Following two are two blue buttons on the left
+  btns_[JoyButton::LEFT_BUMPER] = 5;
+  btns_[JoyButton::BACK_SELECT_MINUS] = 7;
+  // Following two are two blue buttons on the right
+  btns_[JoyButton::RIGHT_BUMPER] = 4;
+  btns_[JoyButton::START_PLUS] = 6;
+}
+
+float LogitechG920Controller::accelerator_value()
+{
+  // The pedals report -1.0 when untouched, and change positively to 1.0 when full pressed
+  return ((input_msg_.axes[axes_[JoyAxis::RIGHT_TRIGGER_AXIS]] + 1.0)) / 2.0;
+}
+
+float LogitechG920Controller::brake_value()
+{
+  // The pedals report -1.0 when untouched, and change positively to 1.0 when full pressed
+  return ((input_msg_.axes[axes_[JoyAxis::LEFT_TRIGGER_AXIS]] + 1.0)) / 2.0;
 }
 
 // --- HRI Safe Remote Controller

@@ -93,6 +93,13 @@ bool GameControl::CheckControllerType(const ros::NodeHandle& nodeH)
     // Set to match the G29 controller_type's max center-to-lock steering angle (radians).
     max_rot_rad_ = 7.85;
   }
+  else if (controller_string == "LOGITECH_G920")
+  {
+    controller_ = std::make_unique<controllers::LogitechG920Controller>();
+
+    // Set to match the G920 controller_type's max center-to-lock steering angle (radians).
+    max_rot_rad_ = 7.85;
+  }
   else
   {
     ROS_ERROR("Provided controller_type is invalid. Exiting.");

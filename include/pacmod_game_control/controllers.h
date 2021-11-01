@@ -88,6 +88,14 @@ public:
   float brake_value() override;
 };
 
+class LogitechG920Controller : public Controller
+{
+public:
+  LogitechG920Controller();
+  float accelerator_value() override;
+  float brake_value() override;
+};
+
 class HriSafeController : public Controller
 {
 public:
