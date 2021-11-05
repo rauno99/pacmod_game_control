@@ -183,6 +183,38 @@ bool AS::Joystick::check_controller_type(ros::NodeHandle * nodeH)
       PublishControl::btns[START_PLUS] = 10;
 
     }
+    else if (controller_string == "LOGITECH_G920")
+    {
+      PublishControl::controller = LOGITECH_G29;
+			
+      // Set to match the G29 controller's max center-to-lock steering angle (radians).
+      PublishControl::max_rot_rad = 7.85;
+      
+
+
+
+      // steering wheel, not right stick
+      PublishControl::axes[RIGHT_STICK_LR] = 0;
+      // throttle pedal, not right trigger
+      PublishControl::axes[RIGHT_TRIGGER_AXIS] = 1;
+      // brake pedal, not left trigger
+      PublishControl::axes[LEFT_TRIGGER_AXIS] = 2;
+      PublishControl::axes[DPAD_LR] = 4;
+      PublishControl::axes[DPAD_UD] = 5;
+
+      PublishControl::btns[BOTTOM_BTN] = 0;
+      PublishControl::btns[RIGHT_BTN] = 2;
+      PublishControl::btns[LEFT_BTN] = 1;
+      PublishControl::btns[TOP_BTN] = 3;
+
+      // Following two are two blue buttons on the left
+      PublishControl::btns[LEFT_BUMPER] = 5;
+      PublishControl::btns[BACK_SELECT_MINUS] = 7;
+      // Following two are two blue buttons on the right
+      PublishControl::btns[RIGHT_BUMPER] = 4;
+      PublishControl::btns[START_PLUS] = 6;
+
+    }
     else if (controller_string == "NINTENDO_SWITCH_WIRED_PLUS")
     {
       PublishControl::controller = NINTENDO_SWITCH_WIRED_PLUS;

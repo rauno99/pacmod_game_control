@@ -37,9 +37,10 @@
        LOGITECH_F310 (the standard gamepad provided with all vehicles)
        HRI_SAFE_REMOTE
        LOGITECH_G29 (steering wheel and pedals)
+       LOGITECH_G920 (steering wheel and pedals)
        NINTENDO_SWITCH_WIRED_PLUS
        XBOX_ONE -->
-  <arg name="controller_type" default="LOGITECH_F310"/>
+  <arg name="controller_type" default="LOGITECH_G920"/>
 
   <!-- 4.71239 is fast but jerky. Speed in rad/sec.-->
   <arg name="steering_max_speed" default="3.3"/>
