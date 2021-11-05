@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Driver Args -->
-  <arg name="launch_driver" default="false" />
+  <arg name="launch_driver" default="true" />
   <arg name="use_socketcan" default="false" />
-  <arg name="pacmod_can_hardware_id" default="43029" />
+  <arg name="pacmod_can_hardware_id" default="10761" />
   <arg name="pacmod_can_circuit_id" default="0" />
   <arg name="pacmod_socketcan_device" default="can0" />
 
@@ -60,5 +60,21 @@
     <param name="accel_scale_val" value="$(arg accel_scale_val)"/>
     <param name="brake_scale_val" value="$(arg brake_scale_val)"/>
     <param name="max_veh_speed" value="$(arg max_veh_speed)" />
+    <remap from="/pacmod/horn_cmd" to="/pacmod/as_rx/horn_cmd" />
+    <remap from="/pacmod/enable" to="/pacmod/as_rx/enable" />
+    <remap from="/pacmod/rear_pass_door_cmd" to="/pacmod/as_rx/rear_pass_door_cmd" />
+    <remap from="/pacmod/turn_cmd" to="/pacmod/as_rx/turn_cmd" />
+    <remap from="/pacmod/headlight_cmd" to="/pacmod/as_rx/headlight_cmd" />
+    <remap from="/pacmod/wiper_cmd" to="/pacmod/as_rx/wiper_cmd" />
+    <remap from="/pacmod/brake_cmd" to="/pacmod/as_rx/brake_cmd" />
+    <remap from="/pacmod/shift_cmd" to="/pacmod/as_rx/shift_cmd" />
+    <remap from="/pacmod/accel_cmd" to="/pacmod/as_rx/accel_cmd" />
+    <remap from="/pacmod/steer_cmd" to="/pacmod/as_rx/steer_cmd" />
+    <remap from="/pacmod/turn_rpt" to="/pacmod/parsed_tx/turn_rpt" />
+    <remap from="/pacmod/shift_rpt" to="/pacmod/parsed_tx/shift_rpt" />
+    <remap from="/pacmod/rear_pass_door_rpt" to="/pacmod/parsed_tx/rear_pass_door_rpt" />
+    <remap from="/pacmod/vehicle_speed_rpt" to="/pacmod/parsed_tx/vehicle_speed_rpt" />
+    <remap from="/pacmod/enabled" to="/pacmod/as_tx/enabled" />
+
   </node>
 </launch>
